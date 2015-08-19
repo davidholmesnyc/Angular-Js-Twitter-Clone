@@ -1,6 +1,7 @@
 # Angular-Js-Twitter-Clone
 A working Twitter clone built in Angular.JS 
-working demo 
+
+##Working demo 
  <a href="http://www.davidholmesnyc.com/demo">http://www.davidholmesnyc.com/demo</a>
 
 
