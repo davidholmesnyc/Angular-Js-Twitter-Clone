@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-US" ng-app="app">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <title> Twitter Clone in Angular.JS by David Holmes NYC </title>
+        <link rel="stylesheet" href="css/styles.css" type="text/css" />
+    </head>
+    <body>
+        <div class="alert">
+            <span class="text"></span>
+            <span class="close">X</span>
+        </div>
+        <div id="page-container">
+            <div id="dashboard" class="tweetboxContainer" ng-app="tweetbox" ng-controller="buildBox"  >
+                <div id="profile-summary">
+                    <div class="content">
+                        <img class='avatar' src='{{twitter.USERIMAGE}}' />
+                        <p>{{twitter.FULLNAME}}</p>
+                    </div>
+                </div>
+                <div id="tweet-content">
+                    <textarea class="tweet-compose tweetbox" ng-keydown="down($event)" placeholder="Compose new Tweet..." maxlength="140" /></textarea>
+                <div id="tweet-controls">
+                    <div id="char-count" class="MAX_TWEET_COUNT {{twitter.max_tweet_class}}" ng-init="twitter.currentTweetCount = twitter.MAX_TWEET_COUNT">{{twitter.currentTweetCount}}</div>
+                    <button class="button" id="tweet-submit" ng-click="sendTweet()">Tweet</button>
+                </div>
+            </div>
+        </div>
+        <div id="main" class="tweets" ng-app="twitterlist" >
+            <h2>Tweets</h2>
+            <div id="stream" class="tweetlist"  ng-controller="MyCtrl">
+                <div class="tweet" data-ng-repeat="tweet in tweets">
+                    <div class="content">
+                        <img class="avatar" src="{{tweet.image}}" />
+                        <strong class="fullname">{{tweet.fullname}}</strong>
+                        <span class="username">@{{tweet.username}}</span>
+                        <p class="tweet-text">{{tweet.tweetBody}}</p>
+                        <div class="tweet-actions">
+                            <ul>
+                                <li class="replyToTweet" ng-click="reply(tweet)">
+                                    <span class="icon action-reply"></span> Reply
+                                </li>
+                                <li class="retweetTweet {{tweet.retweet}}" ng-click="retweet(tweet)">
+                                    <span class="icon action-retweet"></span> Retweet
+                                </li>
+                                <li class="favoriteTweet {{tweet.favorite}}" ng-click="favorite(tweet)">
+                                    <span class="icon action-favorite"></span> Favorite
+                                </li>
+                                <li class="moreActionsTweet" ng-click="more(tweet)">
+                                    <span class="icon action-more"></span> More
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="stats" ng-hide="!tweet.showMore">
+                            <div class="retweets">
+                                <p class="num-retweets">{{tweet.retweetCount || 0 }}</p>
+                                <p>RETWEETS</p>
+                            </div>
+                            <div class="favorites">
+                                <p class="num-favorites">{{tweet.favoritesCount || 0 }}</p>
+                                <p>FAVORITES</p>
+                            </div>
+                            <div class="users-interact">
+                                <div>
+                                    <img src="{{twitter.FAKE_PROFILE_IMAGE}}" />
+                                    <img src="{{twitter.FAKE_PROFILE_IMAGE}}" />
+                                </div>
+                            </div>
+                            <div class="time">{{twitter.timestamp}}</div>
+                        </div>
+                        <div class="reply"  ng-hide="!tweet.show" style="margin-top:20px;">
+                            <img class="avatar" src="{{twitter.USERIMAGE}}" />
+                            <div class="text-holder" style="">{{tweet.repliedText}}</div>
+                            <textarea class="tweet-compose" placeholder="Reply to @{{twitter.USERNAME}}" data-index="{{$index}}" ng-show="!tweet.replied"  /></textarea>
+                        <a href="javascript:" ng-click="replyToTweet(tweet)" class="submitReply {{tweet.reply}}" ng-init="tweet.replyText = 'Reply'" >{{tweet.replyText}}</a>
+                    </div>
+                </div>
+            </div>
+            <!-- .tweet -->
+        </div>
+        <!-- #stream -->
+    </div>
+    <!-- #main -->
+</div>
+<!-- #page-container -->
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/chance/0.5.6/chance.min.js"></script>
+<script src="js/twitter.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
