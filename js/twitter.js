@@ -7,8 +7,8 @@
   twitter.MAX_TWEETS = 10
   twitter.FULLNAME = 'David Holmes NYC'
   twitter.USERNAME = 'davidholmesnyc'
-  twitter.USERIMAGE = 'http://davidholmesnyc.com/headshot.png'
-  twitter.FAKE_PROFILE_IMAGE = 'http://www.lcfc.com/images/common/bg_player_profile_default_big.png'
+  twitter.USERIMAGE = 'img/headshot.png'
+  twitter.FAKE_PROFILE_IMAGE = 'img/bg_player_profile_default_big.png'
   
   // functions 
 
